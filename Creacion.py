@@ -7,8 +7,9 @@ a = os.system("g++ Ejercicio.cpp -o Ejercicio.x")
 a = os.system("./Ejercicio.x > Ejercicio.dat")
 
 plt.figure()
-data = np.loadtxt("Ejercicio.dat")
-plt.hist(data[:,0], data[:,1])
+datos = np.loadtxt("Ejercicio.dat")
+plt.hist(datos[0:], bins=70)
 plt.xlabel('X')
 plt.ylabel('Y')
 plt.savefig("Histograma.png")
+
