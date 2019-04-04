@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
@@ -17,29 +16,37 @@ int main()
   return 0;
 }
 
+double g(float x){
+      return exp(-(x*x)/2);
+}
+
 void MC(int N)
 {
+/* Creo las variables necesarias para metropolis en este bloque*/    
+  int i;  
   srand48(10);
   double x;
   float ne;
   double propuesta;
-  double r;
+  float r;
   float sigma;
   float nuevo;
-  
+  float respuesta;
+    
+/* Se inicializan algunas de las variables */ 
   sigma = 1; 
   nuevo = drand48();
   x = drand48();
-  
-  float respuesta;
-  respuesta = 2* nuevo - sigma;
-    
- int i; 
- for(i=0;i<1000;i++)
+      
+  respuesta = 2*nuevo - sigma;
+   
+/* Se realiza el ciclo que cumple el metodo de metropolis */    
+ for(i=0;i<=1000;i++)
  {
     propuesta = x + respuesta;
-    ne=drand48();
     r =min(1.0,g(propuesta)/g(x));
+    ne=drand48();
+    
            
     if (ne<r){
     x = propuesta;
@@ -48,14 +55,11 @@ void MC(int N)
     else {
         x = x;
     }
-    
-  cout << x << " "<< endl;
+/* Como resultado se imprime el valor de x */    
+  
+    cout << x << " " << endl;
   }    
 }
 
-double g(float x)
-           {
-      return exp(-(x*x)/2);
-}
 
 
